@@ -1,0 +1,9 @@
+name: ElressRPG
+version: 1.6
+author: NEXOmega
+main: fr.NEXOmega.Main
+commands:
+ ering:
+  description: Create Own Ring
+  permission: elress.ring.create
+  
