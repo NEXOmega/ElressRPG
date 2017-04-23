@@ -32,14 +32,13 @@ public class Title implements Listener {
 	ArrayList<String> titlel = Lists.newArrayList();
 	
 	public static void join(Player p) {
-		if(p.getName().equals("NEXOmega")) {
 			ItemStack item = new ItemStack(Material.RECORD_9);
         	ItemMeta itemMeta = item.getItemMeta();
         	itemMeta.setDisplayName("Pierre de dieu");
-        	itemMeta.setLore(Arrays.asList("§cDieu de la lune"));
+        	itemMeta.setLore(Arrays.asList("§cDieu du temps"));
         	item.setItemMeta(itemMeta);
         	p.getInventory().addItem(item);
-		}
+		
 	}
 	
 	@EventHandler
@@ -60,7 +59,9 @@ public class Title implements Listener {
 						p.setPassenger(ent);
 						p.sendMessage("Votre Titre est : " + title);
 						titlel.add(p.getName().toString());
-					} 
+					} else if (titlel.contains(p.getName().toString())) {
+						p.getPassenger().setCustomName(title);
+					}
 					}
 				}
 			}

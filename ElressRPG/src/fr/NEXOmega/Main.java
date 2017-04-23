@@ -13,6 +13,7 @@ import fr.NEXOmega.Commands.RingCmd;
 import fr.NEXOmega.Event.Join;
 import fr.NEXOmega.Inventory.InventoryManager;
 import fr.NEXOmega.Inventory.RingSlot;
+import fr.NEXOmega.Title.Title;
 import fr.NEXOmega.mounts.Mount;
 
 public class Main extends JavaPlugin {
@@ -35,6 +36,7 @@ public class Main extends JavaPlugin {
 		pm.registerEvents(new InventoryManager(this), this);
 		pm.registerEvents(new RingSlot(this), this);
 		pm.registerEvents(new Mount(this), this);
+		pm.registerEvents(new Title(this), this);
 		Bukkit.getPluginCommand("ering").setExecutor(new RingCmd(this));
 		
 	}
