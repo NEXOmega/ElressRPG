@@ -11,6 +11,7 @@ import org.bukkit.event.EventHandler;
 import org.bukkit.event.Listener;
 import org.bukkit.event.block.Action;
 import org.bukkit.event.player.PlayerInteractEvent;
+import org.bukkit.event.player.PlayerJoinEvent;
 import org.bukkit.event.player.PlayerQuitEvent;
 import org.bukkit.inventory.ItemStack;
 import org.bukkit.inventory.meta.ItemMeta;
@@ -31,7 +32,9 @@ public class Title implements Listener {
 	ArmorStand ent;
 	ArrayList<String> titlel = Lists.newArrayList();
 	
-	public static void join(Player p) {
+	@EventHandler
+	public void playerJoin(PlayerJoinEvent e) {
+		Player p = e.getPlayer();
 			ItemStack item = new ItemStack(Material.RECORD_9);
         	ItemMeta itemMeta = item.getItemMeta();
         	itemMeta.setDisplayName("Pierre de dieu");
@@ -49,6 +52,8 @@ public class Title implements Listener {
 			if(p.getItemInHand().getType().equals(Material.RECORD_9)) {
 				if(e.getAction().equals(Action.RIGHT_CLICK_AIR)) {
 					String title = p.getInventory().getItemInHand().getItemMeta().getLore().get(0).toString();
+					
+					
 					if(!titlel.contains(p.getName().toString())) {
 						
 						ent = (ArmorStand)p.getWorld().spawnEntity(p.getLocation(), EntityType.ARMOR_STAND);
@@ -59,8 +64,6 @@ public class Title implements Listener {
 						p.setPassenger(ent);
 						p.sendMessage("Votre Titre est : " + title);
 						titlel.add(p.getName().toString());
-					} else if (titlel.contains(p.getName().toString())) {
-						p.getPassenger().setCustomName(title);
 					}
 					}
 				}
@@ -70,10 +73,12 @@ public class Title implements Listener {
 	@EventHandler
 	public void leave(PlayerQuitEvent e) {
 		Player p = e.getPlayer();
-		if(titlel.contains(p.getName().toString())) {
-			p.getPassenger().remove();
-			titlel.remove(p.getName().toString());
-		}
+		
+			if(titlel.contains(p.getName().toString())) {
+				p.getPassenger().remove();
+				titlel.remove(p.getName().toString());
+			}
+		
 	}
 
 }

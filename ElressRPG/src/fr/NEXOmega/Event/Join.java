@@ -20,7 +20,7 @@ public class Join implements Listener {
 	public void playerJoin(PlayerJoinEvent e) {
 		InventoryManager.scan();
 
-		@SuppressWarnings("unused")
+		
 		Player p = e.getPlayer();
 		ItemStack test = new ItemStack(Material.SADDLE,1);
 		ArrayList<String> lore = new ArrayList<>();
