@@ -11,6 +11,7 @@ import org.bukkit.plugin.java.JavaPlugin;
 
 import fr.NEXOmega.Commands.RingCmd;
 import fr.NEXOmega.Event.Join;
+import fr.NEXOmega.Guild.GuildCommands;
 import fr.NEXOmega.Inventory.InventoryManager;
 import fr.NEXOmega.Inventory.RingSlot;
 import fr.NEXOmega.Title.Title;

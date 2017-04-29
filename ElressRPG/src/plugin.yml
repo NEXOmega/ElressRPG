@@ -6,4 +6,7 @@ commands:
  ering:
   description: Create Own Ring
   permission: elress.ring.create
+ guild:
+  description: Create Your Guild
+  permission: elress.guild
   
