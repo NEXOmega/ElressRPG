@@ -1,5 +1,6 @@
 package fr.NEXOmega.Guild;
 
+import org.bukkit.Location;
 import org.bukkit.command.Command;
 import org.bukkit.command.CommandExecutor;
 import org.bukkit.command.CommandSender;
@@ -18,28 +19,38 @@ public class GuildCommands implements CommandExecutor {
 	@Override
 	public boolean onCommand(CommandSender sender, Command cmd, String label, String[] args) {
 		if(sender instanceof Player) {
-			
+			Player p = (Player) sender;
 			if(cmd.getName().equalsIgnoreCase("guild")) {
+				
 				if(args.length > 0) {
 					
-					createGuild(args);
+					if(args[0].equalsIgnoreCase("create")) {  
+						
+						if(main.getPlayerConfiguration().getString("globalPlayerConfig" + ".PlayerList" + "." + p.getName() + ".Guild").equals("NoGuild")) {
+							GuildUtil.createGuild(args[1], p, main);
+							GuildUtil.addPlayer(p, args[1], main);
+							p.sendMessage("La Guilde : " + args[1] + " à était crée");
+						} else {
+							p.sendMessage("Vous deveez quitter votre guilde avant d'en crée une !");
+						}
+					} else if (args[0].equalsIgnoreCase("sethome")) {
+						
+						main.getGuildConfiguration().set("globalGuildConfig" + ".GuildList" +"." + GuildUtil.getGuild(p, main) + ".Base", p.getLocation());
+						p.sendMessage("Guild spawn set.");
+						
+					} else if (args[0].equalsIgnoreCase("home")) {
+						p.sendMessage("Téléportation a la base.");
+						p.teleport((Location) main.getGuildConfiguration().get("globalGuildConfig" + ".GuildList" +"." + GuildUtil.getGuild(p, main) + ".Base"));
+					}
+					
+					
 					main.saveGuildConfiguration();
+					
 				}
 			}
 		}
 		return false;
 	}
-
-	private void createGuild(String[] args) {
-		String[] gcontent = {".Name", ".Player"};
-		main.getGuildConfiguration().createSection("globalGuildConfig" + ".GuildList" + "." + args[0]);
-		
-		for(int i = 0; i < gcontent.length; i++) {
-			main.getGuildConfiguration().createSection("globalGuildConfig" + ".GuildList" + "." + args[0] + gcontent[i]);
-			main.getGuildConfiguration().set("globalGuildConfig" + ".GuildList" + "." + args[0] + ".Name", args[0]);
-		
-		}
-			
-	}
+	
 
 }
