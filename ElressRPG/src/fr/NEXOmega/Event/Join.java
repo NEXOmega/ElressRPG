@@ -28,7 +28,9 @@ public class Join implements Listener {
 		
 		
 		Player p = e.getPlayer();
-		main.getPlayerConfiguration().set("globalPlayerConfig" + ".PlayerList" + "." + p.getName() + ".Guild", "NoGuild");
+		if(!main.getPlayerConfiguration().contains("globalPlayerConfig" + ".PlayerList" + "." + p.getName())) {
+			main.getPlayerConfiguration().set("globalPlayerConfig" + ".PlayerList" + "." + p.getName() + ".Guild" + ".Name", "NoGuild");
+		}
 		main.savePlayerConfiguration();
 		ItemStack test = new ItemStack(Material.SADDLE,1);
 		ArrayList<String> lore = new ArrayList<>();

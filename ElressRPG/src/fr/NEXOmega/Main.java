@@ -46,15 +46,18 @@ public class Main extends JavaPlugin {
 		pm.registerEvents(new Title(this), this);
 		Bukkit.getPluginCommand("ering").setExecutor(new RingCmd(this));
 		Bukkit.getPluginCommand("guild").setExecutor(new GuildCommands(this));
-		createConfig();
-		registerFile();
+		if(!gf.exists()) {
+			createConfig();
+			registerFile();
+		}
+		
 		
 	}
 	
 	public void registerFile() {
 		
 		try {
-			
+			players.save(playersf);
 			global.save(gf);
 			guild.save(guildf);
 		} catch (IOException e) {
@@ -72,7 +75,6 @@ public class Main extends JavaPlugin {
 	createGuildConfig();
 	createPlayerConfig();
 	}
-
 
 
 	private void createPlayerConfig() {
@@ -125,12 +127,11 @@ public class Main extends JavaPlugin {
 
 
 	private void createGlobalConfig() {
-		String[] list = {".Event", ".Arene"};
+		String[] list = {".Enable" , ".EnableRing"};
 		for(int i = 0; i < list.length; i++) {
-		getGConfiguration().createSection("globalConfig" + ".Loc"+ list[i]);
+		getGConfiguration().set("globalConfig" + ".Basic"+ list[i], "true");
 					
 		}
-	
 		saveGConfiguration();
 	
 	}
@@ -151,4 +152,5 @@ public class Main extends JavaPlugin {
 		}
 	
 	}
+
 }

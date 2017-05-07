@@ -9,4 +9,3 @@ commands:
  guild:
   description: Create Your Guild
   permission: elress.guild
-  
