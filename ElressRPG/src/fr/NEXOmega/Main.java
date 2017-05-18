@@ -40,10 +40,18 @@ public class Main extends JavaPlugin {
 		
 		PluginManager pm = Bukkit.getPluginManager();
 		pm.registerEvents(new Join(this), this);
+		
 		pm.registerEvents(new InventoryManager(this), this);
-		pm.registerEvents(new RingSlot(this), this);
+		
+		if(getGConfiguration().getBoolean("globalConfig" + ".Basic"+".EnableRing")) {
+			pm.registerEvents(new RingSlot(this), this);
+		}
+		
 		pm.registerEvents(new Mount(this), this);
+		
 		pm.registerEvents(new Title(this), this);
+		
+		
 		Bukkit.getPluginCommand("ering").setExecutor(new RingCmd(this));
 		Bukkit.getPluginCommand("guild").setExecutor(new GuildCommands(this));
 		if(!gf.exists()) {
@@ -129,7 +137,7 @@ public class Main extends JavaPlugin {
 	private void createGlobalConfig() {
 		String[] list = {".Enable" , ".EnableRing"};
 		for(int i = 0; i < list.length; i++) {
-		getGConfiguration().set("globalConfig" + ".Basic"+ list[i], "true");
+		getGConfiguration().set("globalConfig" + ".Basic"+ list[i], true);
 					
 		}
 		saveGConfiguration();

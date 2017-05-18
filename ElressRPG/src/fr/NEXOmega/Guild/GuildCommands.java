@@ -1,5 +1,6 @@
 package fr.NEXOmega.Guild;
 
+
 import org.bukkit.Location;
 import org.bukkit.command.Command;
 import org.bukkit.command.CommandExecutor;
@@ -90,11 +91,9 @@ public class GuildCommands implements CommandExecutor {
 					}
 					
 					else if(args[0].equalsIgnoreCase("view")) {
-						p.sendMessage(GuildUtil.getGuild(p, main) + "  " + GuildUtil.getRank(p, main) + "  " + p);
+						p.sendMessage(GuildUtil.getGuild(p, main));
 					}
-					
-					
-					
+										
 					main.saveGuildConfiguration();
 					
 				}

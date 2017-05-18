@@ -6,6 +6,7 @@ import org.bukkit.Bukkit;
 import org.bukkit.Material;
 import org.bukkit.entity.Damageable;
 import org.bukkit.entity.Entity;
+import org.bukkit.entity.LivingEntity;
 import org.bukkit.entity.Player;
 import org.bukkit.event.EventHandler;
 import org.bukkit.event.Listener;
@@ -77,8 +78,8 @@ private static Main main;
 			e = p.getWorld().spawnEntity(p.getLocation(), MountsMethods.getEntity(mount));
 			p.sendMessage("on");
 			mounted.add(p.getName().toString());
-			e.setCustomName(mount.getItemMeta().getLore().get(1));
-			e.setCustomNameVisible(true);
+			((LivingEntity) e).setCustomName(mount.getItemMeta().getLore().get(1));
+			((LivingEntity) e).setCustomNameVisible(true);
 			
 			e.setPassenger(p);
 		} else {
@@ -92,6 +93,7 @@ private static Main main;
 		
 	}
 
+	@SuppressWarnings("deprecation")
 	private void delMount(Player p) {
 		mounted.remove(p.getName().toString());
 		((Damageable) p.getVehicle()).damage(1000);

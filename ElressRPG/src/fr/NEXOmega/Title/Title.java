@@ -4,9 +4,9 @@ import java.util.ArrayList;
 import java.util.Arrays;
 
 import org.bukkit.Material;
-import org.bukkit.entity.ArmorStand;
 import org.bukkit.entity.EntityType;
 import org.bukkit.entity.Player;
+import org.bukkit.entity.Zombie;
 import org.bukkit.event.EventHandler;
 import org.bukkit.event.Listener;
 import org.bukkit.event.block.Action;
@@ -29,7 +29,7 @@ public class Title implements Listener {
 		Title.main = pmain;
 	}
 	
-	ArmorStand ent;
+	Zombie ent;
 	ArrayList<String> titlel = Lists.newArrayList();
 	
 	@EventHandler
@@ -56,11 +56,11 @@ public class Title implements Listener {
 					
 					if(!titlel.contains(p.getName().toString())) {
 						
-						ent = (ArmorStand)p.getWorld().spawnEntity(p.getLocation(), EntityType.ARMOR_STAND);
+						ent = (Zombie)p.getWorld().spawnEntity(p.getLocation(), EntityType.ZOMBIE);
 						ent.setCustomName(title);
 						ent.setCustomNameVisible(true);
-						ent.setVisible(false);
-						ent.setSmall(true);
+						
+						ent.setBaby(true);
 						p.setPassenger(ent);
 						p.sendMessage("Votre Titre est : " + title);
 						titlel.add(p.getName().toString());

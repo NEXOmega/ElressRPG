@@ -2,6 +2,7 @@ name: ElressRPG
 version: 1.6
 author: NEXOmega
 main: fr.NEXOmega.Main
+description : Plugin fait pour le serveur Elress mais opensource
 commands:
  ering:
   description: Create Own Ring

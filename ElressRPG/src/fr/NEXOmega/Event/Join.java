@@ -29,6 +29,7 @@ public class Join implements Listener {
 		
 		Player p = e.getPlayer();
 		if(!main.getPlayerConfiguration().contains("globalPlayerConfig" + ".PlayerList" + "." + p.getName())) {
+			main.getPlayerConfiguration().set("globalPlayerConfig" + ".PlayerList" + "." + p.getName() + ".Sanity", 0);
 			main.getPlayerConfiguration().set("globalPlayerConfig" + ".PlayerList" + "." + p.getName() + ".Guild" + ".Name", "NoGuild");
 		}
 		main.savePlayerConfiguration();
